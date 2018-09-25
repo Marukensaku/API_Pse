@@ -1,0 +1,110 @@
+from flask import Flask
+from flask_script import Manager
+from flask_sqlalchemy import SQLAlchemy
+
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:123456@localhost/blog'
+db = SQLAlchemy(app)
+
+
+db = SQLAlchemy(app)
+manager = Manager(app)
+
+class User(db.Model):
+    __tablename__ = 'users'
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True)
+    email = db.Column(db.String(320), unique=True)
+    password = db.Column(db.String(32), nullable=False)
+
+    def __repr__(self):
+        return '<User %r>' % self.username
+
+if __name__ == '__main__':
+    manager.run()
+
+
+
+
+
+
+
+
+
+
+-----------------分割线--------------------
+
+
+
+
+
+
+
+导入初始文件
+from hello import db
+
+
+
+1.创建表
+db.create_all()
+2.删除表
+db.drop_all()
+3.插入数据
+
+from hello import User
+u = User(username='st',email='st@example.com',password='123456')
+db.session.add(u)
+db.session.commit()
+
+
+4.查询数据
+（1） filter_by查询（精确查询）
+user = User.query.filter_by(username='st').first()
+print(user)
+
+
+(2) get(主键)：（id:一般为主键）
+User.query.get(1)
+
+(3) filter查询（模糊查询）：
+User.query.filter(User.username.endswith('t')).all()
+
+(4) 逻辑非查询
+
+user = User.query.filter(User.username != 'st').first()
+print(user)
+(5) 逻辑与
+
+from sqlalchemy import and_
+user = User.query.filter(and_(User.username=='stt',User.email.endswith('@example.com'))).first()
+print(user)
+
+(6) 逻辑或
+
+from sqlalchemy import or_
+user = User.query.filter(or_(User.username != 'stt',User.email.endswith('@example.com'))).first()
+print(user)
+
+(7) first()返回查询到的第一个对象
+
+user = User.query.first()
+print(user)
+
+(8) all()返回查询到的所有对象
+
+user = User,query.all(0
+print(user)
+
+5.删除数据
+
+user = User.query.first()
+db.session.delete(user)
+db.session.commit()
+User.query.all()
+
+6. 更新数据
+
+user = User.query.first()
+user.username = 'ballking'
+db.session.commit()
+User.query.first()
