@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/API_Pse.iml" filepath="$PROJECT_DIR$/.idea/API_Pse.iml" />
+      <module fileurl="file://$USER_HOME$/Recoding_Python/.idea/Recoding_Python.iml" filepath="$USER_HOME$/Recoding_Python/.idea/Recoding_Python.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sqlalchempy_test/pro_test/.idea/pro_test.iml" filepath="$PROJECT_DIR$/sqlalchempy_test/pro_test/.idea/pro_test.iml" />
     </modules>
   </component>
 </project>
